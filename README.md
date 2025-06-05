@@ -1,6 +1,6 @@
 #Project Name: 
 
-    - Amazon Clone (Frontend)
+    - Amazon Clone (Full Stack)
 
 #Tech Stack used:
    - React-Vite
@@ -8,6 +8,8 @@
    - Tailwind css
    - React Icons
    - Fake Store API
+   - Firebase backend
+   - Stripe payment system
      
 #Tools
    - Visual Studio Code
