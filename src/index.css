@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    @apply font-inter;
+  }
+
+  input {
+    border-style: none;
+  }
+}
+@layer components {
+  .card_container {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 rounded-sm shadow-md transform hover:scale-110 transition duration-300;
+  }
+}
+@layer utilities {
+}
