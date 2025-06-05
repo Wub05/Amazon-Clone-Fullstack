@@ -1,11 +1,13 @@
 {
-  "homepage": "https://Wub05.github.io/Amazon-Clone",
+  "homepage": "https://Wub05.github.io/Amazon-Clone-Fullstack",
   "name": "package.json",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
