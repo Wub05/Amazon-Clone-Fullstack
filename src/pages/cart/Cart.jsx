@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import Layout from "../../components/Layout/Layout";
+import Layout from "../../components/layout/Layout";
 import { DataContext } from "../../components/dataProvider/DataProvider";
 import ProductCard from "../../components/product/ProductCard";
 import CurrencyFormat from "../../components/CurrencyFormat";
