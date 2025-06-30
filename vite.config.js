@@ -5,5 +5,5 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   // base: "/Amazon-Clone-Fullstack/",
   base:"/",
-  plugins: [react(),tailwindcss()],
+  plugins: [react()],
 });
