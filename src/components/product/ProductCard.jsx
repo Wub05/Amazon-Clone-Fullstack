@@ -29,19 +29,27 @@ const ProductCard = ({ data, _flex, addDesc, showButton }) => {
       className={`group
       ${
         _flex
-          ? "relative flex gap-[50px] h-auto px-[1%]   "
-          : "p-3 shadow-md shadow-[#47444437] rounded-sm transform hover:scale-95 transition duration-300 px-5"
-      }    
-`}
+          ? "relative flex gap-[10px] h-auto px-[1%]"
+          : "p-3 shadow-[0_4px_12px_rgba(0,0,0,0.08)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.12)] rounded-xl transform hover:scale-95 transition duration-300 px-5"
+      }
+    `}
     >
-      <Link to={`/products/${id}`}>
-        <img
-          src={image}
-          alt={id}
-          className={`relative object-contain  ${
-            _flex ? "h-[250px] my-[1%]" : "h-[200px] p-3"
+      <Link to={`/products/${id}`} className={`${_flex ? " w-[30%] " : ""}`}>
+        <div
+          className={`${
+            _flex
+              ? " flex-1 flex justify-center items-center overflow-hidden w-[80%] h-[60%] mx-auto my-[5%] "
+              : ""
           }`}
-        />
+        >
+          <img
+            src={image}
+            alt={id}
+            className={` object-contain ${
+              _flex ? " max-h-full max-w-full " : "h-[200px] p-3"
+            }`}
+          />
+        </div>
       </Link>
 
       <div
