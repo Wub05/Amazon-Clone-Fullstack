@@ -1,4 +1,4 @@
-import Layout from "../Layout/Layout";
+import Layout from "../layout/Layout";
 import { PropagateLoader, BounceLoader, HashLoader } from "react-spinners";
 const Loader = () => {
   return (
