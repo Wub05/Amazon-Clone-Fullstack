@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import Layout from "../../components/Layout/Layout";
+import Layout from "../../components/layout/Layout";
 import ProductCard from "../../components/product/ProductCard";
 import { DataContext } from "../../components/dataProvider/DataProvider";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
