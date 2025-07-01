@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { baseUrl } from "../../api/baseURL";
 import axios from "axios";
 import ProductCard from "../../components/product/ProductCard";
-import Layout from "../../components/Layout/Layout";
+import Layout from "../../components/layout/Layout";
 import Loader from "../../components/loader/Loader";
 
 const ProductDetail = () => {

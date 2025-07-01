@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import Layout from "../../components/Layout/Layout";
+import Layout from "../../components/layout/Layout";
 import { DataContext } from "../../components/dataProvider/DataProvider";
 import {
   collection,
