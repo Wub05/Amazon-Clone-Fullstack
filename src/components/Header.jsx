@@ -2,94 +2,81 @@ import { Link } from "react-router-dom";
 import { imagesData } from "../constants/images";
 import { CiLocationOn } from "react-icons/ci";
 import { IoSearchOutline } from "react-icons/io5";
-import { DataContext } from "./dataProvider/DataProvider";
-import { useContext } from "react";
 import { PiShoppingCartSimpleBold } from "react-icons/pi";
-import LowerHeader from "./LowerHeader";
+import { useContext } from "react";
+import { DataContext } from "./dataProvider/DataProvider";
 import { auth } from "../utility/firebase";
+import LowerHeader from "./LowerHeader";
 
 const Header = () => {
-  //useContext
-  const [{ cart, user }, dispatch] = useContext(DataContext);
-
-  // Total cart items
+  const [{ cart, user }] = useContext(DataContext);
   const total_items = cart?.reduce((amount, item) => amount + item.amount, 0);
 
   return (
-    <header className="sticky bg-header_bg text-white top-0 z-50 ">
-      <section className="relative flex justify-around items-center gap-1 py-6 h-[3.5rem] ">
-        <div className="flex items-center gap-1 left-0 ml-[-5.5rem] mr-[6rem]  ">
-          {/* logo */}
+    <header className="sticky top-0 z-50 bg-header_bg text-white">
+      <section className="flex flex-wrap md:flex-nowrap justify-between items-center gap-3 py-4 px-4 h-auto md:h-[3.5rem]">
+        {/* Logo & Delivery */}
+        <div className="flex items-center gap-2 w-full md:w-auto">
           <Link to="/">
             <img
               src={imagesData.Amazon_Logo}
               alt="amazon logo"
-              className="w-full h-[9rem] mr-[-2rem]"
+              className="w-[80px] h-auto md:h-[9rem] object-contain"
             />
           </Link>
-          {/* delivery */}
-          <span>
-            <CiLocationOn
-              size={20}
-              className="font-bold mr-[-0.2rem] mb-[-0.3rem]"
-            />
-          </span>
-          <div className="leading-[1.9rem]">
-            <p className="text-xs mb-[-0.35rem] text-[#d8d3d3]">Delivered to</p>
-            <span className="font-bold text-[1rem]">United Ethiopia</span>
+          <CiLocationOn size={20} />
+          <div className="hidden sm:block leading-5">
+            <p className="text-xs text-[#d8d3d3]">Delivered to</p>
+            <span className="font-bold text-sm md:text-base">
+              United Ethiopia
+            </span>
           </div>
         </div>
 
-        <div className="flex items-center w-[48%] ml-[-15rem] mr-[-7.5rem] focus-within:outline focus-within:outline-3 rounded-md focus-within:outline-[#e36e33]">
-          {/* search */}
-
-          <select className="text-black bg-[#D4D4D4] py-[0.51rem] pl-[0.7rem] pr-[0.1rem] mr-[-0.1rem] text-lg rounded-l-md max-w-14 cursor-pointer ">
-            <option value="" defaultValue="All">
-              All
-            </option>
+        {/* Search Bar */}
+        <div className="flex items-center w-full md:w-[48%] rounded-md overflow-hidden focus-within:outline focus-within:outline-2 md:focus-within:outline-3 focus-within:outline-[#e36e33]">
+          <select className="h-10 text-black bg-[#D4D4D4] text-sm md:text-base px-2 rounded-none outline-none">
+            <option value="">All</option>
             <option value="">All in all</option>
           </select>
           <input
             type="text"
-            name=""
-            id=""
             placeholder="search product"
-            className="p-2 w-full text-black outline-none"
+            className="h-10 p-2 w-full text-black text-sm outline-none"
           />
-          {/* icon */}
-          <IoSearchOutline className=" bg-[#F3A847] outline-2 outline-[#ca872f] w-[4rem] h-[2.5rem] rounded-r-md" />
+          <button className="h-10 w-12 flex items-center justify-center bg-[#F3A847] hover:bg-[#dfa133]">
+            <IoSearchOutline className="text-white text-xl" />
+          </button>
         </div>
 
-        {/* right side sections */}
-        <div className="flex justify-evenly min-w-[15%]  mr-[-4rem] px-5 my-3  h-auto">
-          <div className="flex items-center mt-2 h-[33px] ml-[-49px] p-1 mr-[0.5rem] object-contain hover:border-[1px] border-[#ede5e487] rounded-md">
+        {/* Right Controls */}
+        <div className="flex items-center justify-end gap-3 w-full md:w-auto mt-3 md:mt-0">
+          {/* Language Selector */}
+          <div className="flex items-center p-1 hover:border border-[#ede5e487] rounded-md">
             <img
               src={imagesData.USA_flag}
               alt="usa flag"
-              width={27}
-              height={30}
+              className="w-[24px] h-[20px] object-contain"
             />
-            <select name="" id="" className="text-sm bg-black">
+            <select className="text-sm bg-black ml-1">
               <option value="">EN</option>
             </select>
           </div>
 
-          {/* the 3 right edge items */}
-
+          {/* Auth */}
           <Link
             to="/auth"
-            className="leading-3 mt-2 px-[1rem] hover:border-[1px] border-[#ede5e487] rounded-md text-nowrap"
+            className="hover:border border-[#ede5e487] rounded-md px-2"
           >
-            {" "}
             {user ? (
               <>
-                <p className="text-sm px-2 mx-2 ">
-                  <span className="text-yellow-700 mb-1">
-                    Hello, {user?.email?.split("@")[0]} {/*split the string  */}
+                <p className="text-xs">
+                  <span className="text-yellow-700">
+                    Hello, {user.email.split("@")[0]}
                   </span>
                 </p>
                 <span
-                  className="text-md font-bold mx-2 text-nowrap hover:text-red-800 "
+                  className="text-sm font-bold hover:text-red-800"
                   onClick={() => auth.signOut()}
                 >
                   Sign Out
@@ -97,36 +84,34 @@ const Header = () => {
               </>
             ) : (
               <>
-                <p className="text-sm px-2 mx-2 ">Sign In</p>
-                <span className="text-md font-bold mx-[-10px] text-nowrap ">
-                  Account & Lists
-                </span>
+                <p className="text-xs">Sign In</p>
+                <span className="text-sm font-bold">Account & Lists</span>
               </>
             )}
           </Link>
-          {/* orders */}
+
+          {/* Orders */}
           <Link
             to="/orders"
-            className="mr-[10px] mt-2 px-1 leading-[0.9] mx-auto hover:border-[1px] border-[#ede5e487] rounded-md"
+            className="hover:border border-[#ede5e487] rounded-md px-2"
           >
-            <p className="text-sm pl-2">Returns</p>
-            <span className="text-md font-bold mx-2">&Orders</span>
+            <p className="text-xs">Returns</p>
+            <span className="text-sm font-bold">&Orders</span>
           </Link>
-          {/* cart */}
+
+          {/* Cart */}
           <Link
             to="/cart"
-            className=" flex flex-col content-end ml-[-5px] px-1 
-            leading-[1px] border-[2px] border-[#ede5e487] rounded-md"
+            className="relative hover:border border-[#ede5e487] rounded-md px-2"
           >
-            <span className="ml-[10px] mt-4 pb-[2px] text-yellow-500 font-bold text-md rounded-sm text-bold">
+            <span className="absolute -top-2 right-0 text-yellow-500 font-bold text-xs">
               {total_items}
             </span>
-            <span className="my-auto object-contain">
-              <PiShoppingCartSimpleBold size={25} />
-            </span>
+            <PiShoppingCartSimpleBold size={25} />
           </Link>
         </div>
       </section>
+
       <LowerHeader />
     </header>
   );
